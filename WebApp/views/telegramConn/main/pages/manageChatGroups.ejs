@@ -1,0 +1,105 @@
+<script src="/script/telegramConn/js/manageChatGroups.js"></script>
+<div id="overlay">
+    <div class="text text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage Group Chats</h1>
+</div>
+
+<div ng-app="mgmChatGrpApp" ng-controller="mgmChatGrpCtrl">
+  <div class="table-responsive">
+    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" >
+        <thead>
+          <tr>
+            <th>Chat Group Name</th>
+            <th>Chat Group ID</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Chat Group Name</th>
+            <th>Chat Group ID</th>
+            <th></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr ng-repeat="chatGrp in data.chatGrps">
+            <td>{{chatGrp.key}}</td>
+            <td>{{chatGrp.value}}</td>
+            <td>
+                <a href="#" class="btn btn-warning btn-icon-split btn-sm" ng-click="editing(chatGrp.id)" data-toggle="modal" data-target="#editChatGrpModal">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-pen"></i>
+                    </span>
+                    <span class="text">Edit</span>
+                </a>
+                <a href="#" class="btn btn-danger btn-icon-split btn-sm"  ng-click="deleting(chatGrp.id)" data-toggle="modal" data-target="#deleteChatGrpModal">
+                    <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Delete</span>
+                </a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Channel Info Modal -->
+  <div class="modal fade bd-example-modal-lg" id="editChatGrpModal" tabindex="-2" role="dialog" aria-labelledby="editChatGrpModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="editChatGrpModalTitle">Edit Chat Group</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="form-group col-md-6" >
+                            <label for="key">Chat Group Name</label>
+                            <input class="form-control" name="key" ng-model="data.editChatGrp.key">
+                        </div>
+                        <div class="form-group col-md-6" >
+                          <label for="value">Chat Group Telegram ID</label>
+                          <input class="form-control" name="value" ng-model="data.editChatGrp.value">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update()">Update</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Delete confirm modal -->
+  <div class="modal fade bd-example-modal-lg" id="deleteChatGrpModal" tabindex="-2" role="dialog" aria-labelledby="deleteChatGrpModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="deleteChatGrpModalTitle">Delete Chat Group</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                Confirm delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" ng-click="delete()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+
+</div>

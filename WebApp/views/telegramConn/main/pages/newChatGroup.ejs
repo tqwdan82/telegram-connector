@@ -1,0 +1,29 @@
+<script src="/script/telegramConn/js/newChatGroup.js"></script>
+<div id="overlay">
+    <div class="text text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">New Group Chat</h1>
+</div>
+
+<div class="row" ng-app="newChatGrpApp" ng-controller="newChatGrpCtrl">
+  <div class="col-lg-6">
+    <form role="form" method="GET" action="">
+      <div class="row">
+        <div class="form-group col-lg-6" >
+          <label for="key">Chat Group Name*</label>
+          <input class="form-control" name="key" ng-model="data.key">
+        </div>
+        <div class="form-group col-lg-6" >
+          <label for="value">Telegram Chat Group ID*</label>
+          <input class="form-control" name="value" ng-model="data.value">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" ng-class="createEpBtnStatus" aria-disabled="{{createModBtnAria}}" ng-disabled="createModItemAriaDisabled" ng-click="create()">Create</button>
+    </form>
+  </div>
+</div>

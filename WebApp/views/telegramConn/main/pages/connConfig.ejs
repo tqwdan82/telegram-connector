@@ -1,0 +1,49 @@
+<script src="/script/telegramConn/js/connConfig.js"></script>
+<div id="overlay">
+    <div class="text text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Telegram Connection Configuration</h1>
+</div>
+
+<div class="row" ng-app="connConfigApp" ng-controller="connConfigCtrl">
+    <div class="col-lg-12">
+        <p>Telegram Connection String is the Telegram Bot Token. If this is not set, Telegram Bot will not be initialized and no message can be exchanged.</p>
+    </div>
+    <div class="col-lg-6">
+        <form role="form" method="GET" action="">
+            <div class="row">
+                <div class="form-group col-lg-12" >
+                    <div class="card text-white shadow" ng-class="{'bg-success': botInitialized==='initialized', 'bg-danger':botInitialized==='failed', 'bg-secondary':botInitialized==='initializing'}">
+                        <div class="card-body" ng-if="botInitialized==='initialized'">
+                            Telegram Bot is initialized.
+                        </div>
+                        <div class="card-body" ng-if="botInitialized==='failed'">
+                            Telegram Bot is NOT initialized.
+                        </div>
+                        <div class="card-body" ng-if="botInitialized==='initializing'">
+                            Telegram Bot is initializing...
+                        </div>
+                    </div>
+                    <div class="small">
+                        Refresh to check the status of the bot
+                    </div>
+                </div>
+                <div class="form-group col-lg-12" >
+                    <label for="tkvalue">Telegram Connection String</label>
+                    <input class="form-control" name="tkvalue" ng-model="data.token.value">
+                </div>
+                <div class="form-group col-lg-12" >
+                    <label for="value">Self Bot Chat ID</label>
+                    <input class="form-control" name="value" ng-model="data.value">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="test()">Test</button>
+        </form>
+    </div>
+</div>
