@@ -1,12 +1,66 @@
-<script src="/script/telegramConn/js/help.js"></script>
-<div id="overlay">
-    <div class="text text-center">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-</div>
-
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Help</h1>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">How to create a bot</h4>
+  
+  <div class="card-body">
+    <p class="card-text">This quick guide provides steps to creating a bot. You will need the token from the bot for this plugin's configuration</p>
+    <p class="card-text">1. Copy this name – @BotFather – and enter it into the Telegram search box</p>
+    <p class="card-text">2. Go to the BotFather page and send the /start command to the bot</p>
+    <img src="/script/telegramConn/images/Screenshot_1.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">3. Create a new bot by sending the /newbot command or by clicking on /newbot. The system will ask you to name your new bot.</p>
+    <img src="/script/telegramConn/images/Screenshot_2.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">4. Create username for your bot. It must have the word “bot” at the end. If the username is already taken, you’ll need to come up with another option.</p>
+    <img src="/script/telegramConn/images/Screenshot_3.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">The bot has been successfully created. <b>Note</b>: Copy the token for later use.</p>
+    <img src="/script/telegramConn/images/Screenshot_4.png" class="img-fluid" alt="Responsive image">
+    <a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot" class="btn btn-primary">See Telegram Help</a>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">How to create a new channel</h4>
+  <div class="card-body">
+    <p class="card-text">This quick guide provides steps to creating a channel. </p>
+    <p class="card-text">1. Click on the menu icon. A new window will come up.</p>
+    <img src="/script/telegramConn/images/Screenshot_2_1.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">2. Select “Create Channel”.</p>
+    <img src="/script/telegramConn/images/Screenshot_2_2.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">3. Enter your channel name and bio and click “Create”. </p>
+    <img src="/script/telegramConn/images/Screenshot_2_3.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">
+      4. In the next window, choose the type of your channel. If you want your channel to be public, you need to come up with a link for it. If your selected link is unavailable, you’ll need to suggest another option
+      <br>
+      <b>Currently, this plugin can only work with public channels. The link will be the channel name used for the addition of channels in this plugin</b>
+    </p>
+    <img src="/script/telegramConn/images/Screenshot_2_4.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">5. Select the users you want to add and click “Invite”. You can skip this step altogether.</p>
+    <img src="/script/telegramConn/images/Screenshot_2_5.png" class="img-fluid" alt="Responsive image">
+    <p class="card-text">The channel has been successfully created.
+    <img src="/script/telegramConn/images/Screenshot_2_6.png" class="img-fluid" alt="Responsive image">
+    <a href="https://telegram.org/faq_channels" class="btn btn-primary">More About Channels</a>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">How to get group chat/chat IDs</h4>
+  <div class="card-body">
+    <p class="card-text">This quick guide provides steps to retrieve the chat ID (of all chats that your bot is in).</p>
+    <p class="card-text">
+      1. Paste the following link in your browser. Replace < API-access-token > with the API access token that you identified
+      <br>
+      <b>https://api.telegram.org/bot< API-access-token >/getUpdates?offset=0</b>
+    </p>
+    <p class="card-text">
+      2. Send a message to your bot in the Telegram application. The message text can be anything. Your chat history must include at least one message to get your chat ID.
+      <b>Note: To get the group chat ID, send a command message E.g. /help</b>
+    </p>
+    <p class="card-text">3. Refresh your browser. </p>
+    <p class="card-text">
+      4. Identify the numerical chat ID by finding the id inside the chat JSON object.
+    </p>
+    <img src="/script/telegramConn/images/Screenshot_3_1.png" class="img-fluid" alt="Responsive image">
+  </div>
 </div>

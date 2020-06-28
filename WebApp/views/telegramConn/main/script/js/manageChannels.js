@@ -5,6 +5,32 @@ mgmChnnlApp.controller('mgmChnnlCtrl', function($scope) {
         editChannel:{}
     };
     $scope.deletingChnlid = '';
+    $scope.test = {
+        channel : "",
+        message : ""
+    }
+
+    $scope.setTest = function(channelName){
+        $scope.test.channel = channelName;
+    };
+
+    $scope.sendTest = function(){
+
+        document.getElementById("overlay").style.display = "block";
+        let httpCallback = function(response){
+            $scope.$apply(function(){
+                
+                $scope.init();
+            });
+        };
+
+        let data = {
+            dest: "@"+$scope.test.channel,
+            message: $scope.test.message
+        }
+        
+        httpPostAsync("../../web/telegram-connector/api/sendTestTelegram", data, httpCallback);
+    };
 
     $scope.editing = function(id){
         document.getElementById("overlay").style.display = "block";
@@ -51,6 +77,10 @@ mgmChnnlApp.controller('mgmChnnlCtrl', function($scope) {
 
             $scope.$apply(function(){
                 
+                $scope.test = {
+                    channel : "",
+                    message : ""
+                }
                 $scope.data.channels = res;
                 document.getElementById("overlay").style.display = "none";
             });

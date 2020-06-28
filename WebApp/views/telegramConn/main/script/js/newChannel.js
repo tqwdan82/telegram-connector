@@ -15,7 +15,7 @@ newChannelApp.controller('newChannelCtrl', function($scope) {
     };
 
     $scope.init();
-
+    
     $scope.create = function(){
         document.getElementById("overlay").style.display = "block";
         let httpCallback = function(response){

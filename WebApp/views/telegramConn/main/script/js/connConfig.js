@@ -7,12 +7,14 @@ connConfigApp.controller('connConfigCtrl', function($scope) {
             group:"Telegram"
         },
         selfChat:{
-
+            value:"",
+            key:"testChatId",
+            group:"Telegram"
         }
     };
     $scope.botInitialized = false;
 
-    $scope.save = function(){
+    $scope.saveToken = function(){
         document.getElementById("overlay").style.display = "block";
         if(typeof $scope.data.token.id === 'undefined' 
             || typeof $scope.data.token.id === null 
@@ -37,7 +39,31 @@ connConfigApp.controller('connConfigCtrl', function($scope) {
         }  
     };
 
-    $scope.test = function(){
+    $scope.saveChat = function(){
+        document.getElementById("overlay").style.display = "block";
+        if(typeof $scope.data.token.id === 'undefined' 
+            || typeof $scope.data.token.id === null 
+            || typeof $scope.data.token.id === ''){ // update token
+
+            let httpCallback = function(response){
+    
+                document.getElementById("overlay").style.display = "none";
+                window.location.href = '/telegramConn/main?action=connConfig';
+            };
+            httpPutAsync("../../web/telegram-connector/api/ConfigTelegram", $scope.data.selfChat, httpCallback);
+
+        } else{ // new creation
+            
+            let httpCallback = function(response){
+
+                document.getElementById("overlay").style.display = "none";
+                window.location.href = '/telegramConn/main?action=connConfig';
+            };
+            httpPostAsync("../../web/telegram-connector/api/ConfigTelegram", $scope.data.selfChat, httpCallback);
+        }  
+    };
+
+    $scope.testChat = function(){
         document.getElementById("overlay").style.display = "block";
 
         let httpCallback = function(response){
@@ -59,18 +85,33 @@ connConfigApp.controller('connConfigCtrl', function($scope) {
                 $scope.botInitialized = res.botInitialized;
 
                 if(res.data.length > 0){
-                    $scope.data.token = res.data[0];
+                    res.data.forEach( valPair => {
+                        if(valPair.key === 'token'){
+                            $scope.data.token = valPair;
+                        }
+                        else if(valPair.key === 'testChatId'){
+                            $scope.data.selfChat = valPair;
+                        }
+                    });
                 }else{
                     $scope.data.token = {
                         value : "",
                         key:"token",
                         group:"Telegram"
                     };
+
+                    $scope.data.selfChat = {
+                        value : "",
+                        key:"testChatId",
+                        group:"Telegram"
+                    };
                 }
+
+                console.log($scope.data)
                 document.getElementById("overlay").style.display = "none";
             });
         };
-        httpGetAsync("../../web/telegram-connector/api/TelegramConfigStatus?group=Telegram&key=token", {}, httpCallback);
+        httpGetAsync("../../web/telegram-connector/api/TelegramConfigStatus?group=Telegram", {}, httpCallback);
 
     };
 

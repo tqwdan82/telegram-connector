@@ -1,0 +1,93 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Manti-Core Telegram Connector</h1>
+</div>
+
+<p>
+  This plugin helps you configure and set your telegram bot settings.
+  The prerequisite to using this plugin requires that you create your bot in Telegram.
+  It also allows you to add existing telegram channels or chat groups to help your application to send messages them.
+</p>
+
+<p>
+  Access the Help for more information on working the plugin with Telegram.
+</p>
+
+<div class="card mb-3">
+  <h4 class="card-header">To call Web API to send message</h4>
+  
+  <div class="card-body">
+    The Web API call to send message to a channel or destination.
+    <p>
+    <b>Type</b>: <var>Post</var><br>
+    <b>URL</b>: <var>../../web/telegram-connector/api/sendTestTelegram</var><br>
+    <b>Data</b>: <var>
+      {
+        dest: < The Destined Chat Group ID or Channel >,
+        message: < Message for the Chat or Channel >
+      }
+    </var><br>
+    </p>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">To call plugin operation to send message</h4>
+  
+  <div class="card-body">
+    The operation call to send message to a channel or destination.
+    <p>
+    <b>Application Name</b>: <var>telegramConn</var><br>
+    <b>Service</b>: <var>custom</var><br>
+    <b>Operation</b>: <var>sendTestTelegram</var><br>
+    <b>Data</b>: <var>
+      {
+        dest: < The Destined Chat Group ID or Channel >,
+        message: < Message for the Chat or Channel >
+      }
+    </var><br>
+    </p>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">To call plugin operation to get all Channels</h4>
+  
+  <div class="card-body">
+    The operation call to retrieve all channels.
+    <p>
+    <b>Application Name</b>: <var>telegramConn</var><br>
+    <b>Service</b>: <var>ConfigTelegram</var><br>
+    <b>Operation</b>: <var>findOperation</var><br>
+    <b>Data</b>: <var>
+      {
+        where:{ 
+          group: "Channel",
+          key: "ChannelName"
+        }
+      }
+    </var><br>
+    </p>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h4 class="card-header">To call plugin operation to get Chat Group</h4>
+  
+  <div class="card-body">
+    The operation call to retrieve chat group by chat group name. The returned value will be a JSON object containing the ID that is used to send messages to in the <var>value</var> field.
+    <p>
+    <b>Application Name</b>: <var>telegramConn</var><br>
+    <b>Service</b>: <var>ConfigTelegram</var><br>
+    <b>Operation</b>: <var>findOperation</var><br>
+    <b>Data</b>: <var>
+      {
+        where:{ 
+          group: "ChatGroup",
+          key: "< Your Chat Group Name>"
+        }
+      }
+    </var><br>
+    </p>
+  </div>
+</div>

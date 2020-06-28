@@ -22,7 +22,7 @@ const { Telegraf } = require('../lib/node_modules/telegraf')
 let bot;
 const telegramConn = {
     state:false,
-    init: function(token){
+    init: async function(token){
         if(this.state === false
             || this.state === 'failed'){
 
@@ -44,7 +44,8 @@ const telegramConn = {
             });
 
         }else if(this.state === 'initialized'){
-            bot.stop();
+            this.state = "initializing";
+            await bot.stop();
             bot = new Telegraf(token);
             bot.use(async (ctx, next) => {
                 const start = new Date()
