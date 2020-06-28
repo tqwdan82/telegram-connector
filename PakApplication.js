@@ -45,9 +45,13 @@ const init = function(dbMgr, svcMgr, webMgr){
             // }
             let resData = response.data;
             if(resData.length > 0){
-                telegramConn.init(resData[0].value);
+                telegramConn.init(
+                    resData[0].value , 
+                    function(message){
+                        svcMgr.ServiceManager.broadcastApp("Telegram_Message",message);
+                    }    
+                );
             }
-
         };
         
         let queryCriteria = {

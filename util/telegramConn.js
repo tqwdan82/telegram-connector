@@ -22,7 +22,15 @@ const { Telegraf } = require('../lib/node_modules/telegraf')
 let bot;
 const telegramConn = {
     state:false,
-    init: async function(token){
+    recieveHandler : null,
+    init: async function(token, handler){
+        
+        let _handler = null;
+        if(typeof handler !== 'undefined'){
+            _handler = handler;
+            this.recieveHandler = handler;
+        }        
+
         if(this.state === false
             || this.state === 'failed'){
 
@@ -33,6 +41,10 @@ const telegramConn = {
                 const ms = new Date() - start
                 console.log('Recieved: ' + JSON.stringify(ctx.message));
                 console.log('Response time: %sms', ms);
+
+                if(_handler !== null){
+                    _handler(JSON.stringify(ctx.message))
+                }
             })
             //this.initialized = true;
             this.state = "initializing";
@@ -45,6 +57,7 @@ const telegramConn = {
 
         }else if(this.state === 'initialized'){
             this.state = "initializing";
+
             await bot.stop();
             bot = new Telegraf(token);
             bot.use(async (ctx, next) => {
@@ -53,6 +66,11 @@ const telegramConn = {
                 const ms = new Date() - start
                 console.log('Recieved: ' + JSON.stringify(ctx.message));
                 console.log('Response time: %sms', ms);
+
+                if(_handler !== null){
+                    _handler(JSON.stringify(ctx.message))
+                }
+
             })
             //this.initialized = true;
             this.state = "initializing";
